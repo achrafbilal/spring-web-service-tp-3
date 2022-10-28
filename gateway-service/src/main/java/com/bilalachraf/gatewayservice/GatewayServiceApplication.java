@@ -2,6 +2,9 @@ package com.bilalachraf.gatewayservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.ReactiveDiscoveryClient;
+import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
+import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -14,13 +17,19 @@ public class GatewayServiceApplication {
 		SpringApplication.run(GatewayServiceApplication.class, args);
 	}
 
+//	@Bean
+//	RouteLocator gatewayRoutes(RouteLocatorBuilder builder)
+//	{
+//		return builder.routes()
+//				.route(r-> r.path("/customers/**").uri("lb://CUSTOMER-SERVICE"))
+//				.route(r-> r.path("/products/**").uri("lb://INVENTORY-SERVICE"))
+//				.build();
+//	}
 	@Bean
-	RouteLocator gatewayRoutes(RouteLocatorBuilder builder)
+	DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc, DiscoveryLocatorProperties dlp)
 	{
-		return builder.routes()
-				.route(r-> r.path("/customers/**").uri("lb://CUSTOMER-SERVICE"))
-				.route(r-> r.path("/products/**").uri("lb://INVENTORY-SERVICE"))
-				.build();
+		return new DiscoveryClientRouteDefinitionLocator(rdc,dlp);
 	}
+
 
 }

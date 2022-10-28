@@ -1,6 +1,6 @@
-spring:
-  cloud:
-    gateway:
+#spring:
+#  cloud:
+#    gateway:
 #      routes:
 #        - id : r1
 #          uri : http://localhost:8081/
@@ -10,7 +10,7 @@ spring:
 #          uri: http://localhost:8082/
 #          predicates:
 #            - Path= /products/**
-    discovery:
-      enabled: false
-server:
-  port: 8888
+#    discovery:
+#      enabled: false
+#server:
+#  port: 8888
