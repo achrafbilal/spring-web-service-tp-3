@@ -18,10 +18,10 @@ public class CustomerServiceApplication {
     CommandLineRunner start(CustomerRepository repository)
     {
         return args -> {
-            repository.save(new Customer(null,"Bilal Achraf"));
-            repository.save(new Customer(null,"Bilal Ayman"));
-            repository.save(new Customer(null,"Bilal Salim"));
-            repository.save(new Customer(null,"Sami Achraf"));
+            repository.save(new Customer(null,"Bilal Achraf","user-1@mail.com"));
+            repository.save(new Customer(null,"Bilal Ayman" ,"user-2@mail.com"));
+            repository.save(new Customer(null,"Bilal Salim" ,"user-3@mail.com"));
+            repository.save(new Customer(null,"Sami Achraf" ,"user-4@mail.com"));
         };
     }
 
