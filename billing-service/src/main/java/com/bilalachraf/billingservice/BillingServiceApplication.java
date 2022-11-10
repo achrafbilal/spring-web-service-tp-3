@@ -20,24 +20,23 @@ public class BillingServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BillingServiceApplication.class, args);
 	}
+
 	@Bean
-	CommandLineRunner start(BillRepository repository, ProductItemRepository productItemRepository)
-	{
+	CommandLineRunner start(BillRepository repository, ProductItemRepository productItemRepository) {
 		return args -> {
 			for (int i = 0; i < 30; i++) {
 
-				Bill b=repository.save(new Bill(null,Math.random()*100000,null, (long)((Math.random()*4)+1),null));
+				Bill b = repository
+						.save(new Bill(null, Math.random() * 100000, null, (long) ((Math.random() * 4) + 1), null));
 				for (int j = 0; j < 3; j++) {
 					productItemRepository.save(
-					new ProductItem(
-						null,
-						(long)(Math.random()*30)+1,
-						Math.random()*20000,
-						(Math.random()*1500),
-						null,
-						null
-							)
-					);
+							new ProductItem(
+									null,
+									(long) (Math.random() * 30) + 1,
+									Math.random() * 20000,
+									(Math.random() * 1500),
+									b,
+									null));
 				}
 			}
 		};
